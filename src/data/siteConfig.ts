@@ -2,11 +2,11 @@ export const siteConfig = {
   company: {
     name: "Metal Packages Industries",
     shortName: "Metal Packages",
-    tagline: "Manufacturers of Aluminium Collapsible Tubes",
+    tagline: "Smart Packaging. Superior Protection.",
     ceo: "Abdul Basit Khan",
     ceoTitle: "Chief Executive Officer",
     address: "78/A, Old # 4/2, Sector 5/D, Jam Sab Road, Saeedabad, Baldia Town, Karachi, Pakistan",
-    phone: "0345-8222808",
+    phone: "0345-8222808 / 0333-2341214",
     officePhone: "0311-2888535",
     fax: "021-32815885",
     email: "metalpackages@hotmail.com",

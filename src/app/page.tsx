@@ -20,6 +20,7 @@ export default function Home() {
   
   // Modal state for product detailed view
   const [selectedProduct, setSelectedProduct] = useState<typeof siteConfig.products[0] | null>(null);
+  const [showBannerModal, setShowBannerModal] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 1500);
@@ -58,6 +59,7 @@ export default function Home() {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         setSelectedProduct(null);
+        setShowBannerModal(false);
       }
     };
     window.addEventListener("keydown", handleKeyDown);
@@ -66,7 +68,7 @@ export default function Home() {
 
   // Lock body scroll when modal is open
   useEffect(() => {
-    if (selectedProduct) {
+    if (selectedProduct || showBannerModal) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
@@ -74,7 +76,7 @@ export default function Home() {
     return () => {
       document.body.style.overflow = "";
     };
-  }, [selectedProduct]);
+  }, [selectedProduct, showBannerModal]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -233,6 +235,11 @@ export default function Home() {
                     <span>{feature.text}</span>
                   </div>
                 ))}
+              </div>
+              <div style={{ marginTop: "2rem" }}>
+                <button className="btn-primary" style={{ cursor: "pointer" }} onClick={() => setShowBannerModal(true)}>
+                  🔍 View Corporate Banner
+                </button>
               </div>
             </div>
           </div>
@@ -716,6 +723,34 @@ export default function Home() {
                     <span className="btn-icon">💬</span> Request Quote
                   </button>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ===== CORPORATE BANNER MODAL (POPUP) ===== */}
+      {showBannerModal && (
+        <div className="modal-overlay" onClick={() => setShowBannerModal(false)}>
+          <div className="modal-content" style={{ maxWidth: "700px" }} onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close" onClick={() => setShowBannerModal(false)} aria-label="Close modal">
+              &times;
+            </button>
+            <div style={{ padding: "3rem 2rem 2rem", textAlign: "center" }}>
+              <h2 className="modal-title" style={{ marginBottom: "1.5rem" }}>Corporate Banner</h2>
+              <div style={{ border: "1px solid var(--border-color)", borderRadius: "12px", overflow: "hidden", boxShadow: "var(--shadow-lg)" }}>
+                <Image 
+                  src="/banner.jpg" 
+                  alt="Metal Packages Industries Standee Banner" 
+                  width={600} 
+                  height={900} 
+                  style={{ width: "100%", height: "auto", display: "block" }} 
+                />
+              </div>
+              <div style={{ marginTop: "1.5rem" }}>
+                <a href="/banner.jpg" download="Metal-Packages-Industries-Banner.jpg" className="btn-primary" style={{ cursor: "pointer" }}>
+                  📥 Download Banner Image
+                </a>
               </div>
             </div>
           </div>
