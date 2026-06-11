@@ -1847,16 +1847,17 @@ h1, h2, h3, h4, h5, h6 {
   gap: 0.5rem;
   background: var(--gradient-gold);
   color: var(--bg-dark);
-  padding: 0.85rem 1.5rem;
+  padding: 0.85rem 1.1rem;
   border-radius: 10px;
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   text-decoration: none;
   transition: all 0.3s ease;
   border: none;
   cursor: pointer;
   box-shadow: var(--shadow-gold);
   text-align: center;
+  white-space: nowrap;
 }
 
 .modal-btn-download:hover {
@@ -1872,13 +1873,14 @@ h1, h2, h3, h4, h5, h6 {
   gap: 0.5rem;
   background: rgba(200, 164, 90, 0.05);
   color: var(--primary);
-  padding: 0.85rem 1.5rem;
+  padding: 0.85rem 1.1rem;
   border-radius: 10px;
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   transition: all 0.3s ease;
   border: 1px solid rgba(200, 164, 90, 0.3);
   cursor: pointer;
+  white-space: nowrap;
 }
 
 .modal-btn-quote:hover {

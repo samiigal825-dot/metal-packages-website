@@ -53,6 +53,29 @@ export default function Home() {
     return () => observer.disconnect();
   }, [loading]);
 
+  // Close modal on Escape key press
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setSelectedProduct(null);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (selectedProduct) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [selectedProduct]);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setFormStatus("sending");
@@ -666,7 +689,12 @@ export default function Home() {
                 </div>
 
                 <div className="modal-actions-bar">
-                  <a href={selectedProduct.datasheet} download className="modal-btn-download">
+                  <a 
+                    href={selectedProduct.datasheet} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="modal-btn-download"
+                  >
                     <span className="btn-icon">📥</span> Download Datasheet (PDF)
                   </a>
                   <button 
@@ -679,6 +707,10 @@ export default function Home() {
                         message: `Hi, we are interested in your ${selectedProduct.title}. Please provide options and pricing structure for our requirements.`
                       }));
                       scrollToSection("contact");
+                      // Auto-focus on name field
+                      setTimeout(() => {
+                        document.getElementById("name")?.focus();
+                      }, 400);
                     }}
                   >
                     <span className="btn-icon">💬</span> Request Quote
