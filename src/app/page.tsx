@@ -417,6 +417,27 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ===== CTA BANNER ===== */}
+      <section className="cta-banner">
+        <div className="container">
+          <div className="cta-content observe" style={{ opacity: 0 }}>
+            <h2>Ready to Elevate Your Packaging?</h2>
+            <p>
+              Get a custom quote for your aluminium collapsible tube requirements. 
+              Whether you need pharmaceutical, cosmetic, or industrial tubes — our team responds within 24 hours.
+            </p>
+            <div className="cta-buttons">
+              <a href="#contact" onClick={() => scrollToSection("contact")} className="btn-primary">
+                Request a Free Quote →
+              </a>
+              <a href={`tel:${siteConfig.company.fax.replace(/[^0-9+]/g, '')}`} className="btn-secondary">
+                ☎️ Call Us: {siteConfig.company.fax}
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ===== TEAM MESSAGE ===== */}
       <section className="section ceo-section">
         <div className="container">
@@ -432,11 +453,12 @@ export default function Home() {
               <h3>{siteConfig.company.ceo}</h3>
               <div className="ceo-title">{siteConfig.company.ceoTitle}</div>
               <p>
-                &quot;At Metal Packages Industries, our commitment to excellence drives everything we do. We believe in 
-                delivering not just products, but complete packaging solutions that help our clients&apos; 
-                brands stand out. With continuous investment in technology and our people, we are 
-                dedicated to being your trusted partner in aluminium packaging. Our goal is to exceed 
-                expectations in quality, innovation, and service.&quot;
+                &quot;At Metal Packages Industries, we have always believed that quality speaks louder than 
+                quantity. Over four decades, we have built our reputation not on how many tubes we 
+                produce, but on the excellence of every single one. Our commitment is to deliver 
+                complete packaging solutions that help our clients&apos; brands stand out. With continuous 
+                investment in technology and our people, we are dedicated to being your most trusted 
+                partner in aluminium packaging.&quot;
               </p>
             </div>
           </div>
@@ -567,12 +589,10 @@ export default function Home() {
               <p>
                 Leading manufacturer of premium quality flexible aluminium collapsible tubes. 
                 Serving pharmaceutical, cosmetic, food, and industrial sectors with innovative 
-                packaging solutions since over a decade.
+                packaging solutions for over four decades.
               </p>
               <div className="footer-social">
                 <a href={siteConfig.social.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook">📘</a>
-                <a href="#" aria-label="LinkedIn">💼</a>
-                <a href="#" aria-label="Twitter">🐦</a>
                 <a href={`mailto:${siteConfig.company.email}`} aria-label="Email">✉️</a>
               </div>
             </div>
