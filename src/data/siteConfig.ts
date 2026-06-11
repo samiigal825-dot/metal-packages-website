@@ -5,13 +5,13 @@ export const siteConfig = {
     tagline: "Smart Packaging. Superior Protection.",
     ceo: "Abdul Basit Khan",
     ceoTitle: "Chief Executive Officer",
-    address: "78/A, Old # 4/2, Sector 5/D, Jam Sab Road, Saeedabad, Baldia Town, Karachi, Pakistan",
+    address: "78/A, Sector 5/D, Jam Sab Road, Baldia Town, Karachi, Pakistan",
     phone: "0345-8222808 / 0333-2341214",
     officePhone: "0311-2888535",
     fax: "021-32815885",
     email: "metalpackages@hotmail.com",
     businessHours: "Monday - Saturday: 9:00 AM - 6:00 PM\nSunday: Closed",
-    experienceYears: 15,
+    experienceYears: 40,
   },
   hero: {
     badge: "Premium Aluminium Packaging Solutions",
@@ -22,15 +22,15 @@ export const siteConfig = {
     },
     description: "Metal Packages Industries is a premier manufacturer of high-quality flexible aluminium collapsible tubes, serving pharmaceutical, cosmetic, food, and industrial sectors with world-class packaging solutions.",
     stats: [
-      { number: "15+", label: "Years Experience" },
-      { number: "500+", label: "Clients Served" },
+      { number: "40+", label: "Years Experience" },
+      { number: "5000+", label: "Clients Served" },
       { number: "10M+", label: "Tubes Produced" }
     ]
   },
   about: {
     label: "About Us",
     title: "Leaders in Aluminium Packaging Innovation",
-    paragraph1: "Metal Packages Industries is a trusted name in the manufacturing of high-quality flexible aluminium collapsible tubes. With over 15 years of industry experience, we have established ourselves as a reliable partner for businesses seeking premium packaging solutions.",
+    paragraph1: "Metal Packages Industries is a trusted name in the manufacturing of high-quality flexible aluminium collapsible tubes. With over 40 years of industry experience, we have established ourselves as a reliable partner for businesses seeking premium packaging solutions.",
     paragraph2: "Our state-of-the-art manufacturing facility in Karachi is equipped with modern machinery and technology, enabling us to produce tubes that meet the highest international quality standards. We serve diverse industries including pharmaceuticals, cosmetics, food & beverages, and industrial applications.",
     features: [
       { icon: "🏭", text: "Modern Facility" },
@@ -96,10 +96,10 @@ export const siteConfig = {
     }
   ],
   statsSection: [
-    { num: "15+", label: "Years of Experience" },
-    { num: "500+", label: "Satisfied Clients" },
+    { num: "40+", label: "Years of Experience" },
+    { num: "5000+", label: "Satisfied Clients" },
     { num: "10M+", label: "Tubes Produced Annually" },
-    { num: "99.5%", label: "Quality Rate" }
+    { num: "99.9%", label: "Quality Rate" }
   ],
   manufacturingSteps: [
     { num: "01", title: "Aluminium Slugs", desc: "High-purity aluminium slugs are precision-cut as the foundational raw material for tube production.", icon: "🔘" },

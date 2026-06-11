@@ -21,7 +21,7 @@ export default function Home() {
   // Modal state for product detailed view
   const [selectedProduct, setSelectedProduct] = useState<typeof siteConfig.products[0] | null>(null);
   const [showBannerModal, setShowBannerModal] = useState(false);
-  const [activeBannerTab, setActiveBannerTab] = useState<'profile' | 'specs'>('profile');
+  const [activeBannerTab, setActiveBannerTab] = useState<'profile' | 'specs' | 'nozzles'>('profile');
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 1500);
@@ -754,11 +754,17 @@ export default function Home() {
                 >
                   📊 Technical Specifications
                 </button>
+                <button 
+                  className={`banner-tab-btn ${activeBannerTab === 'nozzles' ? 'active' : ''}`}
+                  onClick={() => setActiveBannerTab('nozzles')}
+                >
+                  🔧 Nozzle Styles
+                </button>
               </div>
 
               {/* Image Display */}
               <div style={{ border: "1px solid var(--border-color)", borderRadius: "12px", overflow: "hidden", boxShadow: "var(--shadow-lg)", background: "#12121c" }}>
-                {activeBannerTab === 'profile' ? (
+                {activeBannerTab === 'profile' && (
                   <Image 
                     src="/banner.jpg" 
                     alt="Metal Packages Industries Standee Banner" 
@@ -766,7 +772,8 @@ export default function Home() {
                     height={900} 
                     style={{ width: "100%", height: "auto", display: "block" }} 
                   />
-                ) : (
+                )}
+                {activeBannerTab === 'specs' && (
                   <Image 
                     src="/brochure-technical.jpg" 
                     alt="Metal Packages Industries Technical Specs Standee" 
@@ -775,13 +782,35 @@ export default function Home() {
                     style={{ width: "100%", height: "auto", display: "block" }} 
                   />
                 )}
+                {activeBannerTab === 'nozzles' && (
+                  <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem", padding: "1.5rem" }}>
+                    <div style={{ border: "1px solid rgba(200, 164, 90, 0.15)", borderRadius: "8px", overflow: "hidden" }}>
+                      <Image 
+                        src="/nozzle-types.jpg" 
+                        alt="Nozzle Types Overview" 
+                        width={600} 
+                        height={300} 
+                        style={{ width: "100%", height: "auto", display: "block" }} 
+                      />
+                    </div>
+                    <div style={{ border: "1px solid rgba(200, 164, 90, 0.15)", borderRadius: "8px", overflow: "hidden" }}>
+                      <Image 
+                        src="/nozzle-single.jpg" 
+                        alt="Ophthalmic Long Nozzle close-up" 
+                        width={600} 
+                        height={450} 
+                        style={{ width: "100%", height: "auto", display: "block" }} 
+                      />
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* Download Action */}
               <div style={{ marginTop: "1.5rem" }}>
                 <a 
-                  href={activeBannerTab === 'profile' ? '/banner.jpg' : '/brochure-technical.jpg'} 
-                  download={activeBannerTab === 'profile' ? 'Metal-Packages-Industries-Profile.jpg' : 'Metal-Packages-Industries-Technical-Specs.jpg'} 
+                  href={activeBannerTab === 'profile' ? '/banner.jpg' : activeBannerTab === 'specs' ? '/brochure-technical.jpg' : '/nozzle-types.jpg'} 
+                  download={activeBannerTab === 'profile' ? 'Metal-Packages-Industries-Profile.jpg' : activeBannerTab === 'specs' ? 'Metal-Packages-Industries-Technical-Specs.jpg' : 'Metal-Packages-Industries-Nozzles.jpg'} 
                   className="btn-primary" 
                   style={{ cursor: "pointer" }}
                 >
