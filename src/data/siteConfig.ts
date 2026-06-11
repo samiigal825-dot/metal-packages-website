@@ -9,7 +9,7 @@ export const siteConfig = {
     phone: "021-32815885",
     officePhone: "021-32815885",
     fax: "021-32815885",
-    email: "metalpackages@hotmail.com",
+    email: "contact@metalpackagesindustries.com",
     businessHours: "Monday - Saturday: 9:00 AM - 6:00 PM\nSunday: Closed",
     experienceYears: 40,
   },

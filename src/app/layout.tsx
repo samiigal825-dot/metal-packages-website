@@ -71,7 +71,7 @@ export default function RootLayout({
                 addressCountry: "PK",
               },
               telephone: "+92-21-32815885",
-              email: "metalpackages@hotmail.com",
+              email: "contact@metalpackagesindustries.com",
               foundingDate: "1986",
               sameAs: ["https://www.facebook.com/share/1LAufepF2N/"],
               makesOffer: [
