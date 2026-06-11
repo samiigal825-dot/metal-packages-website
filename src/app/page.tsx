@@ -417,17 +417,17 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== CEO ===== */}
+      {/* ===== TEAM MESSAGE ===== */}
       <section className="section ceo-section">
         <div className="container">
           <div className="section-header observe" style={{ opacity: 0 }}>
-            <div className="section-label">Leadership</div>
+            <div className="section-label">Our Philosophy</div>
             <h2 className="section-title">
-              Message from the <span className="highlight">CEO</span>
+              A Word from <span className="highlight">Our Team</span>
             </h2>
           </div>
           <div className="ceo-grid observe" style={{ opacity: 0 }}>
-            <div className="ceo-avatar">ABK</div>
+            <div className="ceo-avatar">MPI</div>
             <div className="ceo-content">
               <h3>{siteConfig.company.ceo}</h3>
               <div className="ceo-title">{siteConfig.company.ceoTitle}</div>
@@ -458,31 +458,10 @@ export default function Home() {
           <div className="contact-grid">
             <div className="contact-info observe" style={{ opacity: 0 }}>
               <div className="contact-card">
-                <div className="contact-icon">👤</div>
-                <div>
-                  <h3>CEO</h3>
-                  <p>{siteConfig.company.ceo}</p>
-                </div>
-              </div>
-              <div className="contact-card">
-                <div className="contact-icon">📞</div>
-                <div>
-                  <h3>Cell Phone</h3>
-                  <p><a href={`tel:${siteConfig.company.phone.replace(/[^0-9+]/g, '')}`}>{siteConfig.company.phone}</a></p>
-                </div>
-              </div>
-              <div className="contact-card">
                 <div className="contact-icon">☎️</div>
                 <div>
-                  <h3>Office Phone</h3>
-                  <p><a href={`tel:${siteConfig.company.officePhone.replace(/[^0-9+]/g, '')}`}>{siteConfig.company.officePhone}</a></p>
-                </div>
-              </div>
-              <div className="contact-card">
-                <div className="contact-icon">📠</div>
-                <div>
-                  <h3>Fax</h3>
-                  <p>{siteConfig.company.fax}</p>
+                  <h3>Phone (PTCL)</h3>
+                  <p><a href={`tel:${siteConfig.company.fax.replace(/[^0-9+]/g, '')}`}>{siteConfig.company.fax}</a></p>
                 </div>
               </div>
               <div className="contact-card">
@@ -620,20 +599,8 @@ export default function Home() {
             <div className="footer-links">
               <h4>Contact Info</h4>
               <div className="footer-contact-item">
-                <span>👤</span>
-                <p>{siteConfig.company.ceo} (CEO)</p>
-              </div>
-              <div className="footer-contact-item">
-                <span>📞</span>
-                <p><a href={`tel:${siteConfig.company.phone.replace(/[^0-9+]/g, '')}`}>{siteConfig.company.phone}</a> (Cell)</p>
-              </div>
-              <div className="footer-contact-item">
                 <span>☎️</span>
-                <p><a href={`tel:${siteConfig.company.officePhone.replace(/[^0-9+]/g, '')}`}>{siteConfig.company.officePhone}</a> (Office)</p>
-              </div>
-              <div className="footer-contact-item">
-                <span>📠</span>
-                <p>{siteConfig.company.fax} (Fax)</p>
+                <p><a href={`tel:${siteConfig.company.fax.replace(/[^0-9+]/g, '')}`}>{siteConfig.company.fax}</a> (PTCL)</p>
               </div>
               <div className="footer-contact-item">
                 <span>✉️</span>
