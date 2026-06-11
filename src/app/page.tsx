@@ -583,7 +583,7 @@ export default function Home() {
                 packaging solutions since over a decade.
               </p>
               <div className="footer-social">
-                <a href="#" aria-label="Facebook">📘</a>
+                <a href={siteConfig.social.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook">📘</a>
                 <a href="#" aria-label="LinkedIn">💼</a>
                 <a href="#" aria-label="Twitter">🐦</a>
                 <a href={`mailto:${siteConfig.company.email}`} aria-label="Email">✉️</a>

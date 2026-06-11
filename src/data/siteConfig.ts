@@ -46,13 +46,13 @@ export const siteConfig = {
       badge: "Pharma Grade",
       desc: "Specially designed aluminium collapsible tubes for ointments, creams, gels, and topical medications with internal lacquer coating for product protection.",
       longDesc: "Our Pharmaceutical Tubes are manufactured in clean, controlled environments complying with GMP requirements. They feature specialized internal lacquers (epoxy phenolic resins) that form a highly protective barrier between the product formulation and the aluminium tube body, preventing oxidation or degradation of the medicine. The tubes are available with latex or sealants at the folded end to prevent leakage and guarantee shelf-life integrity.",
-      specs: ["5ml - 30ml", "Internal Lacquer", "Tamper Evident", "FDA Compliant"],
+      specs: ["2ml - 50ml", "Sealed Membrane", "Tamper Evident", "FDA Compliant"],
       detailedSpecs: [
-        { name: "Diameter Range", value: "13.5mm to 30mm" },
-        { name: "Capacity", value: "5ml to 30ml" },
-        { name: "Internal Lacquer", value: "Double-coated Epoxy Phenolic resin (Pharma grade)" },
-        { name: "Nozzle Type", value: "Standard screw thread / Tamper-evident membrane / Ophthalmic long nozzle" },
-        { name: "Capping Options", value: "Conical cap / Flower cap / Piercing cap / Stand-up cap" },
+        { name: "Diameter Range (D1)", value: "9.8mm to 30.0mm (Standard: 9.8, 11, 13.5, 16, 19, 22, 25, 28, 30 mm)" },
+        { name: "Capacity Range", value: "2 ml to 50 ml (according to DIN 55 542 double fold standard)" },
+        { name: "Internal Lacquer", value: "Double-coated Epoxy Phenolic resin (fully cured, drug grade)" },
+        { name: "Nozzle Versions", value: "Membrane (sealed nozzle) / Normal Round / Reduced Orifice / Metal Nozzle" },
+        { name: "Thread sizes", value: "M7 / 3.5, M9 / 5.5, M11 / 7.0, M15 / 10.0" },
         { name: "Latex Lining", value: "End band latexing available for enhanced seal security" }
       ],
       datasheet: "/datasheets/pharmaceutical-tubes-datasheet.pdf",
@@ -64,14 +64,14 @@ export const siteConfig = {
       badge: "Premium",
       desc: "Elegant and eye-catching aluminium tubes for hair colors, lotions, creams, and beauty products with premium offset printing.",
       longDesc: "Metal Packages Industries designs and manufactures cosmetic-grade aluminium collapsible tubes that emphasize branding, aesthetics, and user experience. With our advanced multi-color offset printing technology, we reproduce complex brand logos, gradient colors, and text with crisp precision. These tubes are 100% recyclable, catering to modern eco-conscious beauty brands looking for premium, premium-feeling metal packaging.",
-      specs: ["10ml - 100ml", "Multi-Color Print", "Custom Design", "Luxury Finish"],
+      specs: ["5ml - 200ml", "Multi-Color Print", "Smooth / Ridged Shoulder", "Luxury Finish"],
       detailedSpecs: [
-        { name: "Diameter Range", value: "16mm to 40mm" },
-        { name: "Capacity", value: "10ml to 100ml" },
-        { name: "Printing", value: "Up to 6-color offset printing with glossy or matte top varnish" },
-        { name: "Nozzle Type", value: "Open nozzle / Sealed membrane / Long nozzle" },
-        { name: "Cap Designs", value: "Luxury round cap / Hexagonal cap / Octagonal cap / Stand-up cap" },
-        { name: "Aesthetics", value: "Metallic shimmer, custom shoulder coating options" }
+        { name: "Diameter Range (D1)", value: "13.5mm to 40.0mm (Standard: 13.5, 16, 19, 22, 25, 28, 30, 32, 35, 40 mm)" },
+        { name: "Capacity Range", value: "5 ml to 200 ml" },
+        { name: "Printing Capability", value: "Up to 6-color offset printing with glossy or matte top varnish" },
+        { name: "Nozzle Versions", value: "Normal Round / Reduced Orifice / Star Orifice / Plastic Thread M13 with sealing foil" },
+        { name: "Shoulder Style", value: "Smooth Shoulder / Ridged Shoulder" },
+        { name: "Cap Designs", value: "Luxury round cap / Hexagonal cap / Octagonal cap / Stand-up cap" }
       ],
       datasheet: "/datasheets/cosmetic-tubes-datasheet.pdf",
       img: "/hero.png"
@@ -82,13 +82,13 @@ export const siteConfig = {
       badge: "Food Safe",
       desc: "Food-grade aluminium collapsible tubes for pastes, adhesives, sealants, and industrial applications with specialized barrier coatings.",
       longDesc: "Our Food & Industrial Tubes offer high chemical resistance and exceptional barrier protection. For food products (spreads, tomato paste, purees), we use food-safe, non-toxic internal coatings. For industrial products (silicone sealants, strong adhesives, lubricants, paints), we use heavy-duty liners capable of resisting aggressive chemical formulas, ensuring the product does not cure or degrade inside the tube during storage.",
-      specs: ["15ml - 200ml", "Food Grade", "Barrier Coating", "Chemical Resistant"],
+      specs: ["15ml - 275ml", "Food Grade", "Heavy-duty Barrier", "Chemical Resistant"],
       detailedSpecs: [
-        { name: "Diameter Range", value: "19mm to 45mm" },
-        { name: "Capacity", value: "15ml to 200ml" },
-        { name: "Material", value: "99.7% pure refined aluminium slugs" },
-        { name: "Resin Integrity", value: "High-temperature chemical barrier coatings" },
-        { name: "Cap Style", value: "Heavy-duty ribbed screw cap / Piercing cap" },
+        { name: "Diameter Range (D1)", value: "19.0mm to 45.0mm (Standard: 19, 22, 25, 28, 30, 32, 35, 40, 45 mm)" },
+        { name: "Capacity Range", value: "15 ml to 275 ml (Maximum double-fold capacity)" },
+        { name: "Body Length (L1)", value: "40.0 mm to 230.0 mm" },
+        { name: "Nozzle Versions", value: "Standard Round / Membrane / Metal Nozzle / Tamper Evident Cap" },
+        { name: "Thread sizes", value: "M11 / 7.0, M15 / 10.0, M20 / 15.0" },
         { name: "Eco-Compliance", value: "100% recyclable, high barrier properties reduce product waste" }
       ],
       datasheet: "/datasheets/food-industrial-tubes-datasheet.pdf",
@@ -144,5 +144,8 @@ export const siteConfig = {
     { icon: "🏥", title: "Veterinary", desc: "Animal health products, veterinary ointments, and treatments." },
     { icon: "🦷", title: "Dental Care", desc: "Toothpaste, oral gels, and dental care products." },
     { icon: "🧴", title: "Personal Care", desc: "Hand creams, shaving creams, and personal hygiene products." }
-  ]
+  ],
+  social: {
+    facebook: "https://www.facebook.com/share/1LAufepF2N/",
+  }
 };
