@@ -102,13 +102,13 @@ export async function POST(request: NextRequest) {
             </p>
             <p style="color: #333; line-height: 1.7; font-size: 15px;">
               If you need immediate assistance, please feel free to call us at 
-              <strong>021-32815885</strong> (PTCL).
+              <strong>+92-21-32815885</strong> (PTCL).
             </p>
             <hr style="border: none; border-top: 1px solid #e5e5e5; margin: 20px 0;"/>
             <p style="color: #777; font-size: 13px; line-height: 1.6;">
               Metal Packages Industries<br/>
-              78/A, Sector 5/D, Jam Sab Road, Baldia Town, Karachi, Pakistan<br/>
-              ☎️ 021-32815885 | ✉️ contact@metalpackagesindustries.com<br/>
+              S.I.T.E. Area, Karachi, Pakistan<br/>
+              ☎️ +92-21-32815885 | ✉️ contact@metalpackagesindustries.com<br/>
               🌐 <a href="https://metalpackagesindustries.com" style="color: #c8a45a;">metalpackagesindustries.com</a>
             </p>
           </div>

@@ -64,10 +64,9 @@ export default function RootLayout({
                 "Leading manufacturer of premium quality flexible aluminium collapsible tubes for pharmaceutical, cosmetic, food, and industrial applications in Pakistan.",
               address: {
                 "@type": "PostalAddress",
-                streetAddress: "78/A, Sector 5/D, Jam Sab Road, Baldia Town",
+                streetAddress: "S.I.T.E. Area",
                 addressLocality: "Karachi",
                 addressRegion: "Sindh",
-                postalCode: "75760",
                 addressCountry: "PK",
               },
               telephone: "+92-21-32815885",
