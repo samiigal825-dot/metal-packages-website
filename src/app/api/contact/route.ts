@@ -124,10 +124,10 @@ export async function POST(request: NextRequest) {
       },
       { status: 200 }
     );
-  } catch (error) {
+  } catch (error: any) {
     console.error("Contact form error:", error);
     return NextResponse.json(
-      { error: "An error occurred while sending your message. Please try again or contact us directly." },
+      { error: error?.message || "An error occurred while sending your message. Please try again or contact us directly." },
       { status: 500 }
     );
   }

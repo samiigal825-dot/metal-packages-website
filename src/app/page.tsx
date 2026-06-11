@@ -17,6 +17,7 @@ export default function Home() {
     message: "",
   });
   const [formStatus, setFormStatus] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   
   // Modal state for product detailed view
   const [selectedProduct, setSelectedProduct] = useState<typeof siteConfig.products[0] | null>(null);
@@ -82,6 +83,7 @@ export default function Home() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setFormStatus("sending");
+    setErrorMessage("");
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
@@ -90,15 +92,25 @@ export default function Home() {
       });
       if (res.ok) {
         setFormStatus("success");
+        setErrorMessage("");
         setFormData({ name: "", email: "", phone: "", company: "", subject: "", message: "" });
         setTimeout(() => setFormStatus(""), 4000);
       } else {
+        const data = await res.json().catch(() => ({}));
         setFormStatus("error");
-        setTimeout(() => setFormStatus(""), 4000);
+        setErrorMessage(data.error || "An error occurred while sending email.");
+        setTimeout(() => {
+          setFormStatus("");
+          setErrorMessage("");
+        }, 6000);
       }
     } catch {
       setFormStatus("error");
-      setTimeout(() => setFormStatus(""), 4000);
+      setErrorMessage("Network error or server unreachable. Please try again.");
+      setTimeout(() => {
+        setFormStatus("");
+        setErrorMessage("");
+      }, 6000);
     }
   };
 
@@ -575,6 +587,11 @@ export default function Home() {
               <button type="submit" className="form-submit" disabled={formStatus === "sending"}>
                 {formStatus === "sending" ? "Sending..." : formStatus === "success" ? "✓ Message Sent!" : formStatus === "error" ? "Error - Try Again" : "Send Message →"}
               </button>
+              {errorMessage && (
+                <div style={{ color: "#ef4444", fontSize: "14px", marginTop: "12px", textAlign: "center", padding: "8px 12px", background: "rgba(239, 68, 68, 0.1)", borderRadius: "6px", border: "1px solid rgba(239, 68, 68, 0.2)" }}>
+                  ❌ {errorMessage}
+                </div>
+              )}
             </form>
           </div>
         </div>
