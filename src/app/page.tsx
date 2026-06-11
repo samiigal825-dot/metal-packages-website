@@ -442,8 +442,8 @@ export default function Home() {
               <a href="#contact" onClick={() => scrollToSection("contact")} className="btn-primary">
                 Request a Free Quote →
               </a>
-              <a href={`tel:${siteConfig.company.fax.replace(/[^0-9+]/g, '')}`} className="btn-secondary">
-                ☎️ Call Us: {siteConfig.company.fax}
+              <a href={`tel:${siteConfig.company.phone.replace(/[^0-9+]/g, '')}`} className="btn-secondary">
+                ☎️ Call Us: {siteConfig.company.phone}
               </a>
             </div>
           </div>
@@ -495,7 +495,7 @@ export default function Home() {
                 <div className="contact-icon">☎️</div>
                 <div>
                   <h3>Phone (PTCL)</h3>
-                  <p><a href={`tel:${siteConfig.company.fax.replace(/[^0-9+]/g, '')}`}>{siteConfig.company.fax}</a></p>
+                  <p><a href={`tel:${siteConfig.company.phone.replace(/[^0-9+]/g, '')}`}>{siteConfig.company.phone}</a></p>
                 </div>
               </div>
               <div className="contact-card">
@@ -510,6 +510,13 @@ export default function Home() {
                 <div>
                   <h3>Factory Address</h3>
                   <p>{siteConfig.company.address}</p>
+                </div>
+              </div>
+              <div className="contact-card">
+                <div className="contact-icon">🕒</div>
+                <div>
+                  <h3>Business Hours</h3>
+                  <p>{siteConfig.company.businessHours}</p>
                 </div>
               </div>
             </div>
@@ -637,7 +644,7 @@ export default function Home() {
               <h4>Contact Info</h4>
               <div className="footer-contact-item">
                 <span>☎️</span>
-                <p><a href={`tel:${siteConfig.company.fax.replace(/[^0-9+]/g, '')}`}>{siteConfig.company.fax}</a> (PTCL)</p>
+                <p><a href={`tel:${siteConfig.company.phone.replace(/[^0-9+]/g, '')}`}>{siteConfig.company.phone}</a> (PTCL)</p>
               </div>
               <div className="footer-contact-item">
                 <span>✉️</span>
@@ -646,6 +653,10 @@ export default function Home() {
               <div className="footer-contact-item flex-start">
                 <span>📍</span>
                 <p className="footer-address">{siteConfig.company.address}</p>
+              </div>
+              <div className="footer-contact-item flex-start">
+                <span>🕒</span>
+                <p>{siteConfig.company.businessHours}</p>
               </div>
             </div>
           </div>
