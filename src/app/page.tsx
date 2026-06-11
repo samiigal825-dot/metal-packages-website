@@ -122,7 +122,7 @@ export default function Home() {
       {/* ===== HERO ===== */}
       <section className="hero" id="hero">
         <div className="hero-bg">
-          <Image src="/hero.png" alt="Aluminium Tubes" fill style={{ objectFit: "cover" }} priority />
+          <Image src="/manufacturing.png" alt="Aluminium Tubes Manufacturing" fill style={{ objectFit: "cover" }} priority />
         </div>
         <div className="hero-overlay"></div>
         <div className="hero-particles">
@@ -172,7 +172,7 @@ export default function Home() {
           </div>
           <div className="hero-image">
             <div className="hero-image-wrapper">
-              <Image src="/products.png" alt="Product Range" width={600} height={500} style={{ width: "100%", height: "auto" }} />
+              <Image src="/hero.png" alt="Pure Metal Collapsible Tubes" width={600} height={500} style={{ width: "100%", height: "auto" }} />
             </div>
             <div className="hero-image-glow"></div>
           </div>
