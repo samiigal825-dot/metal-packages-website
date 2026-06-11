@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { siteConfig } from "../../../data/siteConfig";
 
 // In-memory storage for contact submissions (in production, use a database)
 const submissions: Array<{
@@ -70,11 +71,13 @@ export async function POST(request: NextRequest) {
 export async function GET() {
   return NextResponse.json(
     {
-      company: "Metal Packages",
-      ceo: "Abdul Basit Khan",
-      phone: "+923458222808",
-      email: "metalpackages@hotmail.com",
-      product: "Flexible Aluminium Collapsible Tubes",
+      company: siteConfig.company.name,
+      ceo: siteConfig.company.ceo,
+      phone: siteConfig.company.phone,
+      officePhone: siteConfig.company.officePhone,
+      fax: siteConfig.company.fax,
+      email: siteConfig.company.email,
+      product: siteConfig.company.tagline,
       totalSubmissions: submissions.length,
     },
     { status: 200 }

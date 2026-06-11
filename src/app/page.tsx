@@ -1,6 +1,7 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
+import { siteConfig } from "../data/siteConfig";
 
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
@@ -16,6 +17,9 @@ export default function Home() {
     message: "",
   });
   const [formStatus, setFormStatus] = useState("");
+  
+  // Modal state for product detailed view
+  const [selectedProduct, setSelectedProduct] = useState<typeof siteConfig.products[0] | null>(null);
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 1500);
@@ -32,6 +36,8 @@ export default function Home() {
 
   // Intersection Observer for animations
   useEffect(() => {
+    if (loading) return;
+    
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -75,23 +81,11 @@ export default function Home() {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const manufacturingSteps = [
-    { num: "01", title: "Aluminium Slugs", desc: "High-purity aluminium slugs are precision-cut as the foundational raw material for tube production.", icon: "🔘" },
-    { num: "02", title: "Impact Extrusion", desc: "Slugs are formed into seamless tube shells using high-pressure impact extrusion technology.", icon: "⚡" },
-    { num: "03", title: "Annealing", desc: "Heat treatment process to achieve optimal flexibility and malleability of the aluminium tubes.", icon: "🔥" },
-    { num: "04", title: "Internal Coating", desc: "Food-grade epoxy coating applied inside to protect contents and ensure product integrity.", icon: "🛡️" },
-    { num: "05", title: "Base Coating", desc: "External base coat applied for smooth surface preparation before decorative printing.", icon: "🎨" },
-    { num: "06", title: "Offset Printing", desc: "High-resolution multi-color offset printing for brand graphics, text, and regulatory information.", icon: "🖨️" },
-    { num: "07", title: "Capping", desc: "Precision-engineered caps are fitted and secured for leak-proof product sealing.", icon: "🔧" },
-    { num: "08", title: "Quality Inspection", desc: "Rigorous multi-point quality checks ensuring every tube meets international standards.", icon: "✅" },
-    { num: "09", title: "Packaging & Dispatch", desc: "Carefully packaged in protective materials and dispatched for timely delivery to clients.", icon: "📦" },
-  ];
-
   if (loading) {
     return (
       <div className="page-loader">
         <div className="loader-content">
-          <div className="loader-logo">MP</div>
+          <div className="loader-logo">MPI</div>
           <div className="loader-bar"><div className="loader-bar-inner"></div></div>
         </div>
       </div>
@@ -104,8 +98,8 @@ export default function Home() {
       <nav className={`navbar ${scrolled ? "scrolled" : ""}`} id="navbar">
         <div className="nav-container">
           <a href="#" className="nav-logo" onClick={() => scrollToSection("hero")}>
-            <div className="nav-logo-icon">MP</div>
-            <div className="nav-logo-text">Metal <span>Packages</span></div>
+            <div className="nav-logo-icon">MPI</div>
+            <div className="nav-logo-text">Metal <span>Packages Industries</span></div>
           </a>
           <ul className={`nav-links ${mobileMenu ? "open" : ""}`}>
             <li><a href="#about" onClick={() => scrollToSection("about")}>About</a></li>
@@ -149,16 +143,15 @@ export default function Home() {
           <div className="hero-text">
             <div className="hero-badge">
               <div className="hero-badge-dot"></div>
-              Premium Aluminium Packaging Solutions
+              {siteConfig.hero.badge}
             </div>
             <h1>
-              Crafting <span className="highlight">Precision</span><br />
-              Aluminium Collapsible<br />
-              <span className="highlight">Tubes</span>
+              {siteConfig.hero.title.part1}<br />
+              <span className="highlight">{siteConfig.hero.title.part2}</span><br />
+              <span className="highlight">{siteConfig.hero.title.part3}</span>
             </h1>
             <p className="hero-description">
-              Metal Packages is a premier manufacturer of high-quality flexible aluminium collapsible tubes, 
-              serving pharmaceutical, cosmetic, food, and industrial sectors with world-class packaging solutions.
+              {siteConfig.hero.description}
             </p>
             <div className="hero-buttons">
               <a href="#contact" onClick={() => scrollToSection("contact")} className="btn-primary">
@@ -169,18 +162,12 @@ export default function Home() {
               </a>
             </div>
             <div className="hero-stats">
-              <div className="hero-stat">
-                <div className="hero-stat-number">15+</div>
-                <div className="hero-stat-label">Years Experience</div>
-              </div>
-              <div className="hero-stat">
-                <div className="hero-stat-number">500+</div>
-                <div className="hero-stat-label">Clients Served</div>
-              </div>
-              <div className="hero-stat">
-                <div className="hero-stat-number">10M+</div>
-                <div className="hero-stat-label">Tubes Produced</div>
-              </div>
+              {siteConfig.hero.stats.map((stat, i) => (
+                <div className="hero-stat" key={i}>
+                  <div className="hero-stat-number">{stat.number}</div>
+                  <div className="hero-stat-label">{stat.label}</div>
+                </div>
+              ))}
             </div>
           </div>
           <div className="hero-image">
@@ -200,44 +187,29 @@ export default function Home() {
               <Image src="/factory.png" alt="Our Manufacturing Facility" width={600} height={500} style={{ width: "100%", height: "auto" }} />
               <div className="about-image-overlay">
                 <div className="about-experience">
-                  <div className="about-exp-number">15+</div>
+                  <div className="about-exp-number">{siteConfig.company.experienceYears}+</div>
                   <div className="about-exp-text">Years of<br />Manufacturing<br />Excellence</div>
                 </div>
               </div>
             </div>
             <div className="about-content observe" style={{ opacity: 0 }}>
-              <div className="section-label">About Us</div>
+              <div className="section-label">{siteConfig.about.label}</div>
               <h2 className="section-title">
-                Leaders in <span className="highlight">Aluminium Packaging</span> Innovation
+                {siteConfig.about.title}
               </h2>
               <p>
-                Metal Packages is a trusted name in the manufacturing of high-quality flexible aluminium 
-                collapsible tubes. With over 15 years of industry experience, we have established ourselves 
-                as a reliable partner for businesses seeking premium packaging solutions.
+                {siteConfig.about.paragraph1}
               </p>
               <p>
-                Our state-of-the-art manufacturing facility is equipped with modern machinery and 
-                technology, enabling us to produce tubes that meet the highest international quality 
-                standards. We serve diverse industries including pharmaceuticals, cosmetics, food & 
-                beverages, and industrial applications.
+                {siteConfig.about.paragraph2}
               </p>
               <div className="about-features">
-                <div className="about-feature">
-                  <div className="about-feature-icon">🏭</div>
-                  <span>Modern Facility</span>
-                </div>
-                <div className="about-feature">
-                  <div className="about-feature-icon">🌍</div>
-                  <span>Global Standards</span>
-                </div>
-                <div className="about-feature">
-                  <div className="about-feature-icon">🔬</div>
-                  <span>R&D Excellence</span>
-                </div>
-                <div className="about-feature">
-                  <div className="about-feature-icon">🤝</div>
-                  <span>Trusted Partner</span>
-                </div>
+                {siteConfig.about.features.map((feature, i) => (
+                  <div className="about-feature" key={i}>
+                    <div className="about-feature-icon">{feature.icon}</div>
+                    <span>{feature.text}</span>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -254,34 +226,17 @@ export default function Home() {
             </h2>
             <p className="section-subtitle">
               We manufacture a comprehensive range of aluminium collapsible tubes designed for various 
-              applications, ensuring product integrity and brand excellence.
+              applications, ensuring product integrity and brand excellence. Click on any card for specifications & datasheet.
             </p>
           </div>
           <div className="products-grid">
-            {[
-              {
-                title: "Pharmaceutical Tubes",
-                desc: "Specially designed aluminium collapsible tubes for ointments, creams, gels, and topical medications with internal lacquer coating for product protection.",
-                badge: "Pharma Grade",
-                specs: ["5ml - 30ml", "Internal Lacquer", "Tamper Evident", "FDA Compliant"],
-                img: "/products.png",
-              },
-              {
-                title: "Cosmetic & Beauty Tubes",
-                desc: "Elegant and eye-catching aluminium tubes for hair colors, lotions, creams, and beauty products with premium offset printing.",
-                badge: "Premium",
-                specs: ["10ml - 100ml", "Multi-Color Print", "Custom Design", "Luxury Finish"],
-                img: "/hero.png",
-              },
-              {
-                title: "Food & Industrial Tubes",
-                desc: "Food-grade aluminium collapsible tubes for pastes, adhesives, sealants, and industrial applications with specialized barrier coatings.",
-                badge: "Food Safe",
-                specs: ["15ml - 200ml", "Food Grade", "Barrier Coating", "Chemical Resistant"],
-                img: "/manufacturing.png",
-              },
-            ].map((product, i) => (
-              <div className="product-card observe" style={{ opacity: 0 }} key={i}>
+            {siteConfig.products.map((product, i) => (
+              <div 
+                className="product-card observe clickable-card" 
+                style={{ opacity: 0, cursor: "pointer" }} 
+                key={i}
+                onClick={() => setSelectedProduct(product)}
+              >
                 <div className="product-card-image">
                   <Image src={product.img} alt={product.title} width={400} height={250} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                   <div className="product-card-badge">{product.badge}</div>
@@ -294,6 +249,10 @@ export default function Home() {
                       <span className="product-spec" key={j}>{spec}</span>
                     ))}
                   </div>
+                  <div className="product-card-action">
+                    <span>View Specifications & Datasheet</span>
+                    <span className="action-arrow">→</span>
+                  </div>
                 </div>
               </div>
             ))}
@@ -305,12 +264,7 @@ export default function Home() {
       <div className="stats-section">
         <div className="container">
           <div className="stats-grid">
-            {[
-              { num: "15+", label: "Years of Experience" },
-              { num: "500+", label: "Satisfied Clients" },
-              { num: "10M+", label: "Tubes Produced Annually" },
-              { num: "99.5%", label: "Quality Rate" },
-            ].map((stat, i) => (
+            {siteConfig.statsSection.map((stat, i) => (
               <div className="stat-item observe" style={{ opacity: 0 }} key={i}>
                 <div className="stat-number">{stat.num}</div>
                 <div className="stat-label">{stat.label}</div>
@@ -337,7 +291,7 @@ export default function Home() {
             <div className="process-line">
               <div className="process-line-progress" style={{ height: "100%" }}></div>
             </div>
-            {manufacturingSteps.map((step, i) => (
+            {siteConfig.manufacturingSteps.map((step, i) => (
               <div className="process-step observe" style={{ opacity: 0 }} key={i}>
                 <div className="process-step-content">
                   <h3>{step.icon} {step.title}</h3>
@@ -364,16 +318,7 @@ export default function Home() {
             </p>
           </div>
           <div className="why-grid">
-            {[
-              { icon: "🏆", title: "Premium Quality", desc: "Every tube is manufactured to meet international quality standards with rigorous quality control at each stage." },
-              { icon: "⚙️", title: "Advanced Technology", desc: "State-of-the-art machinery and equipment ensuring precision manufacturing and consistent output." },
-              { icon: "🎯", title: "Custom Solutions", desc: "Tailored tube specifications including sizes, coatings, printing designs, and cap options to match your needs." },
-              { icon: "🚀", title: "On-Time Delivery", desc: "Efficient production planning and logistics ensuring timely delivery of every order, every time." },
-              { icon: "💰", title: "Competitive Pricing", desc: "Best-in-class pricing without compromising on quality, helping you maximize your packaging ROI." },
-              { icon: "🔒", title: "Product Safety", desc: "Internal coatings and barrier technologies that protect your products from contamination and degradation." },
-              { icon: "🌱", title: "Eco-Friendly", desc: "Aluminium is 100% recyclable. Our tubes are environmentally responsible packaging solutions." },
-              { icon: "📞", title: "Dedicated Support", desc: "Responsive customer service team to assist you from initial inquiry through post-delivery support." },
-            ].map((item, i) => (
+            {siteConfig.whyChooseUs.map((item, i) => (
               <div className="why-card observe" style={{ opacity: 0 }} key={i}>
                 <div className="why-card-icon">{item.icon}</div>
                 <h3>{item.title}</h3>
@@ -393,23 +338,16 @@ export default function Home() {
             </div>
             <div className="observe" style={{ opacity: 0 }}>
               <div className="section-label" style={{ textAlign: "left" }}>
-                Quality Assurance
+                {siteConfig.quality.label}
               </div>
               <h2 className="section-title" style={{ textAlign: "left" }}>
-                Committed to <span className="highlight">Excellence</span>
+                {siteConfig.quality.title}
               </h2>
               <p className="section-subtitle" style={{ textAlign: "left", marginBottom: "2rem" }}>
-                Our quality management system ensures that every product meets the highest international standards.
+                {siteConfig.quality.subtitle}
               </p>
               <div className="quality-list">
-                {[
-                  { title: "ISO 9001:2015 Certified", desc: "Quality management system certified to international standards." },
-                  { title: "GMP Compliant", desc: "Good Manufacturing Practices followed across all production stages." },
-                  { title: "Raw Material Testing", desc: "Every batch of aluminium slugs tested for purity and composition." },
-                  { title: "In-Process Quality Checks", desc: "Multi-point inspections during each manufacturing step." },
-                  { title: "Final Product Testing", desc: "Comprehensive testing for dimensions, coating, print quality, and seal integrity." },
-                  { title: "Traceability System", desc: "Complete batch traceability from raw material to finished product." },
-                ].map((item, i) => (
+                {siteConfig.quality.items.map((item, i) => (
                   <div className="quality-item" key={i}>
                     <div className="quality-check">✓</div>
                     <div>
@@ -437,16 +375,7 @@ export default function Home() {
             </p>
           </div>
           <div className="industries-grid">
-            {[
-              { icon: "💊", title: "Pharmaceuticals", desc: "Ointments, creams, gels, topical medications, and medicinal pastes." },
-              { icon: "💄", title: "Cosmetics & Beauty", desc: "Hair colors, skin creams, lotions, sunscreens, and beauty products." },
-              { icon: "🍴", title: "Food & Beverage", desc: "Tomato paste, condiments, mayonnaise, and food-grade pastes." },
-              { icon: "🔧", title: "Industrial", desc: "Adhesives, sealants, lubricants, and industrial compounds." },
-              { icon: "🎨", title: "Paints & Colors", desc: "Artist paints, watercolors, and specialty color products." },
-              { icon: "🏥", title: "Veterinary", desc: "Animal health products, veterinary ointments, and treatments." },
-              { icon: "🦷", title: "Dental Care", desc: "Toothpaste, oral gels, and dental care products." },
-              { icon: "🧴", title: "Personal Care", desc: "Hand creams, shaving creams, and personal hygiene products." },
-            ].map((item, i) => (
+            {siteConfig.industries.map((item, i) => (
               <div className="industry-card observe" style={{ opacity: 0 }} key={i}>
                 <div className="industry-icon">{item.icon}</div>
                 <h3>{item.title}</h3>
@@ -469,10 +398,10 @@ export default function Home() {
           <div className="ceo-grid observe" style={{ opacity: 0 }}>
             <div className="ceo-avatar">ABK</div>
             <div className="ceo-content">
-              <h3>Abdul Basit Khan</h3>
-              <div className="ceo-title">Chief Executive Officer</div>
+              <h3>{siteConfig.company.ceo}</h3>
+              <div className="ceo-title">{siteConfig.company.ceoTitle}</div>
               <p>
-                &quot;At Metal Packages, our commitment to excellence drives everything we do. We believe in 
+                &quot;At Metal Packages Industries, our commitment to excellence drives everything we do. We believe in 
                 delivering not just products, but complete packaging solutions that help our clients&apos; 
                 brands stand out. With continuous investment in technology and our people, we are 
                 dedicated to being your trusted partner in aluminium packaging. Our goal is to exceed 
@@ -498,34 +427,49 @@ export default function Home() {
           <div className="contact-grid">
             <div className="contact-info observe" style={{ opacity: 0 }}>
               <div className="contact-card">
+                <div className="contact-icon">👤</div>
+                <div>
+                  <h3>CEO</h3>
+                  <p>{siteConfig.company.ceo}</p>
+                </div>
+              </div>
+              <div className="contact-card">
                 <div className="contact-icon">📞</div>
                 <div>
-                  <h3>Phone</h3>
-                  <p><a href="tel:+923458222808">+92 345 822 2808</a></p>
+                  <h3>Cell Phone</h3>
+                  <p><a href={`tel:${siteConfig.company.phone.replace(/[^0-9+]/g, '')}`}>{siteConfig.company.phone}</a></p>
+                </div>
+              </div>
+              <div className="contact-card">
+                <div className="contact-icon">☎️</div>
+                <div>
+                  <h3>Office Phone</h3>
+                  <p><a href={`tel:${siteConfig.company.officePhone.replace(/[^0-9+]/g, '')}`}>{siteConfig.company.officePhone}</a></p>
+                </div>
+              </div>
+              <div className="contact-card">
+                <div className="contact-icon">📠</div>
+                <div>
+                  <h3>Fax</h3>
+                  <p>{siteConfig.company.fax}</p>
                 </div>
               </div>
               <div className="contact-card">
                 <div className="contact-icon">✉️</div>
                 <div>
                   <h3>Email</h3>
-                  <p><a href="mailto:metalpackages@hotmail.com">metalpackages@hotmail.com</a></p>
+                  <p><a href={`mailto:${siteConfig.company.email}`}>{siteConfig.company.email}</a></p>
                 </div>
               </div>
               <div className="contact-card">
                 <div className="contact-icon">📍</div>
                 <div>
-                  <h3>Address</h3>
-                  <p>Metal Packages Manufacturing Facility,<br />Pakistan</p>
-                </div>
-              </div>
-              <div className="contact-card">
-                <div className="contact-icon">🕐</div>
-                <div>
-                  <h3>Business Hours</h3>
-                  <p>Monday - Saturday: 9:00 AM - 6:00 PM<br />Sunday: Closed</p>
+                  <h3>Factory Address</h3>
+                  <p>{siteConfig.company.address}</p>
                 </div>
               </div>
             </div>
+            
             <form className="contact-form observe" style={{ opacity: 0 }} onSubmit={handleSubmit}>
               <h3>Send Us a Message</h3>
               <p>Fill out the form and our team will get back to you within 24 hours.</p>
@@ -559,7 +503,7 @@ export default function Home() {
                   <input
                     type="tel"
                     id="phone"
-                    placeholder="+92 XXX XXXXXXX"
+                    placeholder="03XX XXXXXXX"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                   />
@@ -609,7 +553,7 @@ export default function Home() {
         <div className="container">
           <div className="footer-grid">
             <div className="footer-about">
-              <h3>Metal <span>Packages</span></h3>
+              <h3>Metal <span>Packages Industries</span></h3>
               <p>
                 Leading manufacturer of premium quality flexible aluminium collapsible tubes. 
                 Serving pharmaceutical, cosmetic, food, and industrial sectors with innovative 
@@ -619,7 +563,7 @@ export default function Home() {
                 <a href="#" aria-label="Facebook">📘</a>
                 <a href="#" aria-label="LinkedIn">💼</a>
                 <a href="#" aria-label="Twitter">🐦</a>
-                <a href="mailto:metalpackages@hotmail.com" aria-label="Email">✉️</a>
+                <a href={`mailto:${siteConfig.company.email}`} aria-label="Email">✉️</a>
               </div>
             </div>
             <div className="footer-links">
@@ -635,35 +579,43 @@ export default function Home() {
             <div className="footer-links">
               <h4>Products</h4>
               <ul>
-                <li><a href="#products">→ Pharma Tubes</a></li>
-                <li><a href="#products">→ Cosmetic Tubes</a></li>
-                <li><a href="#products">→ Food Grade Tubes</a></li>
-                <li><a href="#products">→ Industrial Tubes</a></li>
-                <li><a href="#products">→ Custom Solutions</a></li>
+                <li><a href="#products" onClick={() => scrollToSection("products")}>→ Pharma Tubes</a></li>
+                <li><a href="#products" onClick={() => scrollToSection("products")}>→ Cosmetic Tubes</a></li>
+                <li><a href="#products" onClick={() => scrollToSection("products")}>→ Food Grade Tubes</a></li>
+                <li><a href="#products" onClick={() => scrollToSection("products")}>→ Industrial Tubes</a></li>
+                <li><a href="#products" onClick={() => scrollToSection("products")}>→ Custom Solutions</a></li>
               </ul>
             </div>
             <div className="footer-links">
               <h4>Contact Info</h4>
               <div className="footer-contact-item">
                 <span>👤</span>
-                <p>Abdul Basit Khan (CEO)</p>
+                <p>{siteConfig.company.ceo} (CEO)</p>
               </div>
               <div className="footer-contact-item">
                 <span>📞</span>
-                <p><a href="tel:+923458222808">+92 345 822 2808</a></p>
+                <p><a href={`tel:${siteConfig.company.phone.replace(/[^0-9+]/g, '')}`}>{siteConfig.company.phone}</a> (Cell)</p>
+              </div>
+              <div className="footer-contact-item">
+                <span>☎️</span>
+                <p><a href={`tel:${siteConfig.company.officePhone.replace(/[^0-9+]/g, '')}`}>{siteConfig.company.officePhone}</a> (Office)</p>
+              </div>
+              <div className="footer-contact-item">
+                <span>📠</span>
+                <p>{siteConfig.company.fax} (Fax)</p>
               </div>
               <div className="footer-contact-item">
                 <span>✉️</span>
-                <p><a href="mailto:metalpackages@hotmail.com">metalpackages@hotmail.com</a></p>
+                <p><a href={`mailto:${siteConfig.company.email}`}>{siteConfig.company.email}</a></p>
               </div>
-              <div className="footer-contact-item">
+              <div className="footer-contact-item flex-start">
                 <span>📍</span>
-                <p>Pakistan</p>
+                <p className="footer-address">{siteConfig.company.address}</p>
               </div>
             </div>
           </div>
           <div className="footer-bottom">
-            <p>© {new Date().getFullYear()} Metal Packages. All Rights Reserved.</p>
+            <p>© {new Date().getFullYear()} {siteConfig.company.name}. All Rights Reserved.</p>
             <p>Designed with ❤️ for Quality Packaging</p>
           </div>
         </div>
@@ -677,6 +629,66 @@ export default function Home() {
       >
         ↑
       </button>
+
+      {/* ===== DETAILS MODAL (POPUP) ===== */}
+      {selectedProduct && (
+        <div className="modal-overlay" onClick={() => setSelectedProduct(null)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close" onClick={() => setSelectedProduct(null)} aria-label="Close modal">
+              &times;
+            </button>
+            <div className="modal-body">
+              <div className="modal-left">
+                <div className="modal-image-wrapper">
+                  <Image 
+                    src={selectedProduct.img} 
+                    alt={selectedProduct.title} 
+                    width={500} 
+                    height={350} 
+                    style={{ width: "100%", height: "auto", objectFit: "cover" }} 
+                  />
+                  <span className="modal-badge-tag">{selectedProduct.badge}</span>
+                </div>
+              </div>
+              <div className="modal-right">
+                <h2 className="modal-title">{selectedProduct.title}</h2>
+                <div className="modal-tagline">{selectedProduct.desc}</div>
+                <p className="modal-long-desc">{selectedProduct.longDesc}</p>
+                
+                <h3 className="specs-heading">Technical Specifications</h3>
+                <div className="modal-specs-table">
+                  {selectedProduct.detailedSpecs.map((spec, index) => (
+                    <div className="modal-spec-row" key={index}>
+                      <span className="modal-spec-name">{spec.name}</span>
+                      <span className="modal-spec-val">{spec.value}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="modal-actions-bar">
+                  <a href={selectedProduct.datasheet} download className="modal-btn-download">
+                    <span className="btn-icon">📥</span> Download Datasheet (PDF)
+                  </a>
+                  <button 
+                    className="modal-btn-quote" 
+                    onClick={() => {
+                      setSelectedProduct(null);
+                      setFormData((prev) => ({
+                        ...prev,
+                        subject: `Inquiry: ${selectedProduct.title}`,
+                        message: `Hi, we are interested in your ${selectedProduct.title}. Please provide options and pricing structure for our requirements.`
+                      }));
+                      scrollToSection("contact");
+                    }}
+                  >
+                    <span className="btn-icon">💬</span> Request Quote
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }
