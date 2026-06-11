@@ -21,6 +21,7 @@ export default function Home() {
   // Modal state for product detailed view
   const [selectedProduct, setSelectedProduct] = useState<typeof siteConfig.products[0] | null>(null);
   const [showBannerModal, setShowBannerModal] = useState(false);
+  const [activeBannerTab, setActiveBannerTab] = useState<'profile' | 'specs'>('profile');
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 1500);
@@ -732,24 +733,59 @@ export default function Home() {
       {/* ===== CORPORATE BANNER MODAL (POPUP) ===== */}
       {showBannerModal && (
         <div className="modal-overlay" onClick={() => setShowBannerModal(false)}>
-          <div className="modal-content" style={{ maxWidth: "700px" }} onClick={(e) => e.stopPropagation()}>
+          <div className="modal-content" style={{ maxWidth: "750px" }} onClick={(e) => e.stopPropagation()}>
             <button className="modal-close" onClick={() => setShowBannerModal(false)} aria-label="Close modal">
               &times;
             </button>
             <div style={{ padding: "3rem 2rem 2rem", textAlign: "center" }}>
-              <h2 className="modal-title" style={{ marginBottom: "1.5rem" }}>Corporate Banner</h2>
-              <div style={{ border: "1px solid var(--border-color)", borderRadius: "12px", overflow: "hidden", boxShadow: "var(--shadow-lg)" }}>
-                <Image 
-                  src="/banner.jpg" 
-                  alt="Metal Packages Industries Standee Banner" 
-                  width={600} 
-                  height={900} 
-                  style={{ width: "100%", height: "auto", display: "block" }} 
-                />
+              <h2 className="modal-title" style={{ marginBottom: "1.5rem" }}>Corporate Brochure</h2>
+              
+              {/* Tab Selector */}
+              <div className="banner-tabs">
+                <button 
+                  className={`banner-tab-btn ${activeBannerTab === 'profile' ? 'active' : ''}`}
+                  onClick={() => setActiveBannerTab('profile')}
+                >
+                  📄 Company Profile
+                </button>
+                <button 
+                  className={`banner-tab-btn ${activeBannerTab === 'specs' ? 'active' : ''}`}
+                  onClick={() => setActiveBannerTab('specs')}
+                >
+                  📊 Technical Specifications
+                </button>
               </div>
+
+              {/* Image Display */}
+              <div style={{ border: "1px solid var(--border-color)", borderRadius: "12px", overflow: "hidden", boxShadow: "var(--shadow-lg)", background: "#12121c" }}>
+                {activeBannerTab === 'profile' ? (
+                  <Image 
+                    src="/banner.jpg" 
+                    alt="Metal Packages Industries Standee Banner" 
+                    width={600} 
+                    height={900} 
+                    style={{ width: "100%", height: "auto", display: "block" }} 
+                  />
+                ) : (
+                  <Image 
+                    src="/brochure-technical.jpg" 
+                    alt="Metal Packages Industries Technical Specs Standee" 
+                    width={600} 
+                    height={900} 
+                    style={{ width: "100%", height: "auto", display: "block" }} 
+                  />
+                )}
+              </div>
+
+              {/* Download Action */}
               <div style={{ marginTop: "1.5rem" }}>
-                <a href="/banner.jpg" download="Metal-Packages-Industries-Banner.jpg" className="btn-primary" style={{ cursor: "pointer" }}>
-                  📥 Download Banner Image
+                <a 
+                  href={activeBannerTab === 'profile' ? '/banner.jpg' : '/brochure-technical.jpg'} 
+                  download={activeBannerTab === 'profile' ? 'Metal-Packages-Industries-Profile.jpg' : 'Metal-Packages-Industries-Technical-Specs.jpg'} 
+                  className="btn-primary" 
+                  style={{ cursor: "pointer" }}
+                >
+                  📥 Download Active Page
                 </a>
               </div>
             </div>
